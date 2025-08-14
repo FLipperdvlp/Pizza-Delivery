@@ -1,0 +1,68 @@
+﻿@model MVC_Pizza.Moduls.OrdersListModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Orders - Bella Vista Pizzeria</title>
+    <link rel="stylesheet" href="~/css/OrderList.css">
+</head>
+<body>
+<a href="#" class="back-btn">← Back to Order Form</a>
+    
+<div class="container">
+    <div class="header">
+        <h1>📋 All Orders</h1>
+        <p>Complete order management dashboard</p>
+    </div>
+
+    <div class="total-orders">
+        📊 Total Orders: @Model. | 🍕 Total Pizzas: @Model.PizzasCount | 💰 Revenue: $@Model.Revenue
+    </div>
+    
+    <div class="orders-grid">
+        @foreach (var order in Model.Orders)
+        {
+            <!-- Order 1 -->
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">Order #@order.Id</div>
+                    @* <div class="order-time">Aug 14, 2025 - 2:30 PM</div> *@
+                </div>
+
+                <div class="order-details">
+                    <div class="detail-row">
+                        <span class="detail-label">👤 Customer:</span>
+                        <span class="detail-value">@order.ClientName</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">📞 Phone:</span>
+                        <span class="detail-value">@order.ClientPhoneNumber</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">🍕 Pizza:</span>
+                        <span class="detail-value pizza-name">@order.Pizza <span
+                                                                               class="quantity-badge">@order.Quantity x</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">🚚 Delivery:</span>
+                        <span class="detail-value">
+                            @if (order.IsSelfDelivery)
+                            {
+                                <span class="delivery-badge self-delivery">Self Pickup</span>
+                            }
+                            else
+                            {
+                                <span class="delivery-badge home-delivery">Home Delivery</span>
+                            }
+                        </span>
+                    </div>
+                </div>
+
+                <div class="status-badge status-preparing">Preparing</div>
+            </div>
+        }
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model MVC_Pizza.Moduls.OrderModel
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Pizza - Bella Vista Pizzeria</title>
+    <link rel="stylesheet" href="~/css/order.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍕 Bella Vista</h1>
+            <p>Delicious pizza delivered fresh to your door</p>
+        </div>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="customerName">Your Name</label>
+                <input type="text" id="customerName" name="customerName" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="customerPhone">Phone Number</label>
+                <input type="tel" id="customerPhone" name="customerPhone" required placeholder="Enter your phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="pizzaSelect">Choose Your Pizza</label>
+                <select id="pizzaSelect" name="pizza" class="pizza-select" required>
+                    @* <option value="">Select a delicious pizza...</option> *@
+                    @* <option value="margherita">🍅 Margherita Classic - Fresh tomato sauce, mozzarella, basil, olive oil</option> *@
+                    @* <option value="pepperoni">🍕 Pepperoni Supreme - Spicy pepperoni, mozzarella, tomato sauce</option> *@
+                    @* <option value="hawaiian">🍍 Hawaiian Paradise - Ham, pineapple, mozzarella, tomato sauce</option> *@
+                    @* <option value="veggie">🥬 Veggie Delight - Bell peppers, mushrooms, onions, olives, mozzarella</option> *@
+                    @* <option value="meat">🥓 Meat Lovers - Pepperoni, sausage, ham, bacon, mozzarella</option> *@
+                    @* <option value="bbq">🔥 BBQ Chicken - Grilled chicken, BBQ sauce, red onions, mozzarella</option> *@
+                    
+                    
+                    @foreach (var pizza in Model.SelectPizza)
+                    {
+                        <option value="@pizza.Id">@pizza.Text></option>
+                    }
+                    
+                    
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="selfDelivery" name="selfDelivery">
+                    <label for="selfDelivery">🚗 I will pick up the order myself (Self Delivery)</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Place Your Order</button>
+        </form>
+
+        <a href="#orders" class="view-orders-link">📋 View All Orders</a>
+    </div>
+</body>
+</html>
