@@ -1,0 +1,11 @@
+﻿@model NeGlovo.Models.Restaurants.RestaurantViewModel
+
+<h1>Restaurant @Model.Id</h1>
+<p>Name: @Model.Name</p>
+<p>Address: @Model.Address</p>
+
+<h3>Dishes:</h3>
+@foreach (var dish in Model.Dishes)
+{
+    <p>@dish.Name (@dish.Price UAH)</p>
+}

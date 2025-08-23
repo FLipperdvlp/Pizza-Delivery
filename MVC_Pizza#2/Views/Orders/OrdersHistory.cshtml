@@ -1,0 +1,8 @@
+﻿@model NeGlovo.Models.Orders.OrdersHistoryResponseModel
+
+<h1>History: </h1>
+
+@foreach (var order in Model.Orders)
+{
+    <p>Order from @order.RestaurantName. Courier: @order.CourierName | @order.CreatedAt</p>
+}

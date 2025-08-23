@@ -1,0 +1,8 @@
+﻿@model NeGlovo.Models.Restaurants.RestaurantsListViewModel
+
+<h1>This is restaurants list</h1>
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    <p>Name: @restaurant.Name | Address: @restaurant.Address | Works: @restaurant.OpensAt - @restaurant.ClosesAt | Id: @restaurant.Id</p>
+}

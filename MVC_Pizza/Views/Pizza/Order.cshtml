@@ -1,5 +1,5 @@
 ﻿@model MVC_Pizza.Moduls.OrderModel
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,46 +16,35 @@
             <p>Delicious pizza delivered fresh to your door</p>
         </div>
 
-        <form action="#" method="post">
+        <form asp-controller="Pizza" asp-action="Order" method="post">
             <div class="form-group">
                 <label for="customerName">Your Name</label>
-                <input type="text" id="customerName" name="customerName" required placeholder="Enter your full name">
+                <input type="text" id="customerName" name="Name" required placeholder="Enter your full name">
             </div>
 
             <div class="form-group">
                 <label for="customerPhone">Phone Number</label>
-                <input type="tel" id="customerPhone" name="customerPhone" required placeholder="Enter your phone number">
+                <input type="tel" id="customerPhone" name="Phone" required placeholder="Enter your phone number">
             </div>
 
             <div class="form-group">
                 <label for="pizzaSelect">Choose Your Pizza</label>
-                <select id="pizzaSelect" name="pizza" class="pizza-select" required>
-                    @* <option value="">Select a delicious pizza...</option> *@
-                    @* <option value="margherita">🍅 Margherita Classic - Fresh tomato sauce, mozzarella, basil, olive oil</option> *@
-                    @* <option value="pepperoni">🍕 Pepperoni Supreme - Spicy pepperoni, mozzarella, tomato sauce</option> *@
-                    @* <option value="hawaiian">🍍 Hawaiian Paradise - Ham, pineapple, mozzarella, tomato sauce</option> *@
-                    @* <option value="veggie">🥬 Veggie Delight - Bell peppers, mushrooms, onions, olives, mozzarella</option> *@
-                    @* <option value="meat">🥓 Meat Lovers - Pepperoni, sausage, ham, bacon, mozzarella</option> *@
-                    @* <option value="bbq">🔥 BBQ Chicken - Grilled chicken, BBQ sauce, red onions, mozzarella</option> *@
-                    
-                    
-                    @foreach (var pizza in Model.SelectPizza)
+                <select id="pizzaSelect" name="PizzaId" class="pizza-select" required>
+                    @foreach (var pizza in Model.SelectPizzas)
                     {
-                        <option value="@pizza.Id">@pizza.Text></option>
+                        <option value="@pizza.Id">@pizza.Text</option>
                     }
-                    
-                    
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+                <input type="number" id="quantity" name="Quantity" min="1" max="10" value="1" required>
             </div>
 
             <div class="form-group">
                 <div class="checkbox-container">
-                    <input type="checkbox" id="selfDelivery" name="selfDelivery">
+                    <input type="checkbox" id="selfDelivery" name="IsSelfDelivery" value="true">
                     <label for="selfDelivery">🚗 I will pick up the order myself (Self Delivery)</label>
                 </div>
             </div>
@@ -63,7 +52,7 @@
             <button type="submit" class="btn-submit">Place Your Order</button>
         </form>
 
-        <a href="#orders" class="view-orders-link">📋 View All Orders</a>
+        <a asp-controller="Pizza" asp-action="OrdersList" class="view-orders-link">📋 View All Orders</a>
     </div>
 </body>
 </html>

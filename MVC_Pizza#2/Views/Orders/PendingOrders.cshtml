@@ -1,0 +1,7 @@
+﻿@model NeGlovo.Models.Orders.PendingOrdersResponseModel
+
+<h1>Pending orders:</h1>
+@foreach (var order in Model.Orders)
+{
+    <p>Order from @order.RestaurantAddress | Created at: @order.CreatedAt</p>
+}

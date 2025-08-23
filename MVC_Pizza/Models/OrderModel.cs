@@ -4,8 +4,11 @@ namespace MVC_Pizza.Moduls;
 
 public class OrderModel
 {
-    public IEnumerable<SelectPizzaModel> SelectPizza { get; set; } = [];
-    
+    public IEnumerable<SelectPizzaModel> SelectPizzas { get; set; }
+    public OrderModel(IEnumerable<Pizza> pizzas)
+    {
+        SelectPizzas = pizzas.Select(pizza => new OrderModel.SelectPizzaModel(pizza));
+    }
     public class SelectPizzaModel
     {
         public int Id { get; set; }
